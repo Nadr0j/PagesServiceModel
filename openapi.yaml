@@ -4,6 +4,12 @@ info:
   description: The control plane for Pages
   version: 1.0.0
 
+servers:
+  - url: http://pages.beta.jws.com
+    description: Beta server
+  - url: https://pages.prod.jws.com
+    description: Production server
+
 paths:
   /pages/getPage:
     post:
