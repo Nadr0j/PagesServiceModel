@@ -6,9 +6,9 @@ info:
 
 servers:
   - url: http://pages.beta.jws.com
-    description: Beta server
+    description: Beta Server
   - url: https://pages.prod.jws.com
-    description: Production server
+    description: Production Server
 
 paths:
   /pages/getPage:
