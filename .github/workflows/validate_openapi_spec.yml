@@ -1,0 +1,25 @@
+name: Validate OpenAPI
+
+on:
+  push:
+    paths:
+      - 'openapi.yaml'
+  pull_request:
+    paths:
+      - 'openapi.yaml'
+
+jobs:
+  validate_openapi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install OpenAPI CLI
+        run: |
+          npm install -g @redocly/openapi-cli
+
+      - name: Validate OpenAPI file
+        run: |
+          openapi lint openapi.yaml
