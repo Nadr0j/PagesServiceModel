@@ -1,0 +1,152 @@
+openapi: 3.0.0
+info:
+  title: Pages
+  description: The control plane for Pages
+  version: 1.0.0
+
+paths:
+  /pages/getPage:
+    post:
+      summary: Gets a page.
+      description: Returns a previously written page based on user, namespace, and page name.
+      requestBody:
+        description: Request body containing user, namespace, and page name.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPageRequest'
+      responses:
+        "200":
+          description: Successfully fetches a page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPageResponse'
+        "400":
+          description: Invalid input, object invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Page not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /pages/writePage:
+    post:
+      summary: Writes a page.
+      description: Writes a new page or updates an existing page based on user, namespace, and page name.
+      requestBody:
+        description: Request body containing user, namespace, page name, and content.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WritePageRequest'
+      responses:
+        "202":
+          description: Successfully written or updated a page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WritePageResponse'
+        "400":
+          description: Invalid input, object invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+    Page:
+      type: object
+      properties:
+        user:
+          type: string
+        namespace:
+          type: string
+        name:
+          type: string
+        content:
+          type: string
+      required:
+        - user
+        - namespace
+        - name
+        - content
+    GetPageRequest:
+      type: object
+      properties:
+        user:
+          type: string
+        namespace:
+          type: string
+        name:
+          type: string
+      required:
+        - user
+        - namespace
+        - name
+    GetPageResponse:
+      type: object
+      properties:
+        page:
+          $ref: '#/components/schemas/Page'
+      required:
+        - page
+    WritePageRequest:
+      type: object
+      properties:
+        user:
+          type: string
+        namespace:
+          type: string
+        name:
+          type: string
+        content:
+          type: string
+      required:
+        - user
+        - namespace
+        - name
+        - content
+    WritePageResponse:
+      type: object
+      properties:
+        user:
+          type: string
+        namespace:
+          type: string
+        name:
+          type: string
+        content:
+          type: string
+      required:
+        - user
+        - namespace
+        - name
+        - content
