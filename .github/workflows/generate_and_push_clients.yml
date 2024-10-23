@@ -3,7 +3,7 @@ name: Generate Clients
 on:
   push:
     paths:
-      - '**/openapi.yaml'
+      - 'openapi.yaml'
 
 jobs:
   generate-clients:
