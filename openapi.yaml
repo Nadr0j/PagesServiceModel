@@ -149,10 +149,7 @@ components:
           type: string
         name:
           type: string
-        content:
-          type: string
       required:
         - user
         - namespace
         - name
-        - content
