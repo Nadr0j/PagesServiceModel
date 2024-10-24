@@ -60,7 +60,7 @@ paths:
             schema:
               $ref: '#/components/schemas/WritePageRequest'
       responses:
-        "202":
+        "200":
           description: Successfully written or updated a page.
           content:
             application/json:
