@@ -72,6 +72,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "409":
+          description: Page already exists and overwriteExisting is false
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         "500":
           description: Internal server error.
           content:
@@ -135,6 +141,8 @@ components:
           type: string
         content:
           type: string
+        overwriteExisting:
+          type: boolean
       required:
         - user
         - namespace
